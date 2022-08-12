@@ -44,12 +44,23 @@ app.get('/game/:id',(req,res)=>{
         }else{
             res.sendStatus(404);
         }
-        
-
-
     }
-
 })
+app.post('/game',(req,res)=>{
+    var {title,price,year} = req.body;
+    if(isNaN(price) || isNaN(year) || typeof title != "string"){
+        res.sendStatus(400);
+    }else{
+        var game = req.body;
+        DB.games.push({
+            id:2325,
+            title,
+            price,
+            year
+        })
+        res.status(200).json(game)
+    }
+}) 
 
 
 
